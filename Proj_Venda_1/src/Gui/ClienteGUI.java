@@ -28,10 +28,10 @@ public class ClienteGUI extends javax.swing.JFrame {
         ResultSet res=null;
         
         try{
-            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/vendas","root", "irineu242");
+            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/vendas","root", "guitarhero");
             
             stmt= conn.createStatement();
-            String sql="select * from cliente";
+            String sql="SELECT cpf, nome, data_de_nascimento, peso, altura FROM cliente;";
             res=stmt.executeQuery(sql);
             model.setRowCount(0);
             while (res.next()){
@@ -158,12 +158,14 @@ public class ClienteGUI extends javax.swing.JFrame {
 
         jLabel6.setText("Altura:");
 
+        jTextField4.setText("0");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
             }
         });
 
+        jTextField5.setText("0");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -311,8 +313,8 @@ public class ClienteGUI extends javax.swing.JFrame {
     jTextField2.setText("");
     jTextField1.setText("");
     jTextField3.setText("");
-    jTextField4.setText("");
-    jTextField5.setText(""); // TODO add your handling code here:
+    jTextField4.setText("0");
+    jTextField5.setText("0"); // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -354,8 +356,8 @@ public class ClienteGUI extends javax.swing.JFrame {
     jTextField1.setText("");
     jTextField2.setText("");
     jTextField3.setText("");
-    jTextField4.setText("");
-    jTextField5.setText("");
+    jTextField4.setText("0");
+    jTextField5.setText("0");
 
 
 // TODO add your handling code here:
@@ -378,8 +380,40 @@ public class ClienteGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    int selectedRow = jTable1.getSelectedRow();
     
-        
+    if(selectedRow == -1){
+    JOptionPane.showMessageDialog(null,"nenhum aluno selecionado.");
+    return;
+    }
+    
+    String Cpf = (String)jTable1.getValueAt(selectedRow, 0);
+    String Nome = jTextField1.getText();
+    String Data_nascimento = jTextField3.getText();
+    float Peso = Float.parseFloat(jTextField4.getText());
+    float Altura = Float.parseFloat(jTextField5.getText());
+    
+    if(Nome.isEmpty() || Data_nascimento.isEmpty() || Peso == 0 || Altura == 0) {
+    JOptionPane.showMessageDialog(null, "Preencha todas as informações.");
+    return;
+    }
+    
+    Cliente cliente = new Cliente();
+    cliente.setCpf(Cpf);
+    cliente.setNome(Nome);
+    cliente.setData_de_nascimento(Data_nascimento);
+    cliente.setPeso(Peso);
+    cliente.setAltura(Altura);
+    
+    UsuarioDAO dao = new UsuarioDAO();
+    dao.atualizar(cliente);
+    
+    model.setValueAt(cliente.getNome(), selectedRow, 1);
+    model.setValueAt(cliente.getData_de_nascimento(), selectedRow, 2);
+    model.setValueAt(cliente.getPeso(), selectedRow, 3);
+    model.setValueAt(cliente.getAltura(), selectedRow, 4);
+    
+    JOptionPane.showMessageDialog(null, "Aluno Atualizado!");
             // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
