@@ -59,21 +59,23 @@ public class UsuarioDAO {
     }
     
     public void atualizar(Cliente cliente) {
-        String sql = "update cliente set nome = ?, data_de_nascimento = ?, peso = ?, altura = ? where cpf = ?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, cliente.getCpf());
-            stmt.setString(2, cliente.getNome());
-            stmt.setString(3,cliente.getData_de_nascimento());
-            stmt.setFloat(4, cliente.getPeso());
-            stmt.setFloat(5,cliente.getAltura());
-            stmt.executeUpdate();
-            stmt.close();
-                    
+    String sql = "update cliente set nome = ?, data_de_nascimento = ?, peso = ?, altura = ? where cpf = ?";
+    try {
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, cliente.getNome());
+        stmt.setString(2, cliente.getData_de_nascimento());
+        stmt.setFloat(3, cliente.getPeso());
+        stmt.setFloat(4, cliente.getAltura());
+        stmt.setString(5, cliente.getCpf());
+        int linhasAfetadas = stmt.executeUpdate();
+        if (linhasAfetadas == 0) {
+            throw new SQLException("Nenhum registro foi atualizado.");
         }
-        catch(SQLException and){
-            throw new RuntimeException("Erro ao tentar atualizar os dados do cliente: " + and.getMessage());
-        }
+        stmt.close();
+    } catch (SQLException e) {
+        e.printStackTrace(); // Registra o erro no console
+        throw new RuntimeException("Erro ao tentar atualizar os dados do cliente: " + e.getMessage());
+    }
     }
     
     public List<Cliente> consultar() {

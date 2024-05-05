@@ -390,12 +390,19 @@ public class ClienteGUI extends javax.swing.JFrame {
     String Cpf = (String)jTable1.getValueAt(selectedRow, 0);
     String Nome = jTextField1.getText();
     String Data_nascimento = jTextField3.getText();
-    float Peso = Float.parseFloat(jTextField4.getText());
-    float Altura = Float.parseFloat(jTextField5.getText());
+    float Peso;
+    float Altura;
     
-    if(Nome.isEmpty() || Data_nascimento.isEmpty() || Peso == 0 || Altura == 0) {
-    JOptionPane.showMessageDialog(null, "Preencha todas as informações.");
-    return;
+    if(Nome.isEmpty() || Data_nascimento.isEmpty() || jTextField4.getText().isEmpty() || jTextField5.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Preencha todas as informações.");
+        return;
+    }
+    try {
+        Peso = Float.parseFloat(jTextField4.getText());
+        Altura = Float.parseFloat(jTextField5.getText());
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Peso e altura devem ser números válidos.");
+        return;
     }
     
     Cliente cliente = new Cliente();
