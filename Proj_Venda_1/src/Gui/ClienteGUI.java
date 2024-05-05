@@ -28,7 +28,7 @@ public class ClienteGUI extends javax.swing.JFrame {
         ResultSet res=null;
         
         try{
-            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/vendas","root", "guitarhero");
+            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/vendas","root", "irineu242");
             
             stmt= conn.createStatement();
             String sql="SELECT cpf, nome, data_de_nascimento, peso, altura FROM cliente;";
@@ -40,6 +40,7 @@ public class ClienteGUI extends javax.swing.JFrame {
                 String Data_de_nascimento = res.getString("data_de_nascimento");
                 Float Peso = res.getFloat("peso");
                 Float Altura = res.getFloat("altura");
+
                 
                 model.addRow(new Object[]{Cpf,Nome,Data_de_nascimento,Peso,Altura});
                 
@@ -97,6 +98,8 @@ public class ClienteGUI extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,6 +186,7 @@ public class ClienteGUI extends javax.swing.JFrame {
                 "Cpf", "Nome", "Data de Nascimento", "Peso", "Altura"
             }
         ));
+        jTable1.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(jTable1);
 
         jButton4.setText("Atualizar");
@@ -199,80 +203,104 @@ public class ClienteGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setText("Consultar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Voltar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(0, 33, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addComponent(jButton7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(33, 33, 33))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4)
+                            .addComponent(jButton3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(56, 56, 56)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56)
-                                .addComponent(jButton3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 22, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(33, 33, 33))
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3)
+                            .addComponent(jButton4)
+                            .addComponent(jButton5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButton6)
+                    .addComponent(jButton7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -286,7 +314,7 @@ public class ClienteGUI extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(17, 17, 17))
         );
@@ -305,132 +333,69 @@ public class ClienteGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Connection conn=null;
+        Statement stmt=null;
+        ResultSet res=null;
+
+        try{
+            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/vendas","root", "irineu242");
+
+            stmt= conn.createStatement();
+            String sql="SELECT cpf, nome, data_de_nascimento, peso, altura FROM cliente;";
+            res=stmt.executeQuery(sql);
+            model.setRowCount(0);
+            while (res.next()){
+                String Cpf = res.getString("cpf");
+                String Nome = res.getString("nome");
+                String Data_de_nascimento = res.getString("data_de_nascimento");
+                Float Peso = res.getFloat("peso");
+                Float Altura = res.getFloat("altura");
+
+                model.addRow(new Object[]{Cpf,Nome,Data_de_nascimento,Peso,Altura});
+
+            }
+        }catch(SQLException and){
+            JOptionPane.showMessageDialog(this,"Erro ao conectar ao banco de dados"+and.getMessage(),"Erro",JOptionPane.ERROR_MESSAGE);
+        }finally{
+
+            try{
+                if(res!=null)res.close();
+                if(stmt!=null)stmt.close();
+                if(conn!=null)conn.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        String cpf = JOptionPane.showInputDialog("Digite o CPF do cliente:");
+
+        if (cpf != null && !cpf.isEmpty()) {
+            // Realizar a consulta utilizando o CPF inserido
+            UsuarioDAO dao = new UsuarioDAO();
+            Cliente cliente = dao.consultar(cpf);
+
+            if (cliente != null) {
+               
+                model.setRowCount(0);
+                model.addRow(new Object[]{cliente.getCpf(), cliente.getNome(), cliente.getData_de_nascimento(), cliente.getPeso(), cliente.getAltura()});
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente não encontrado.");
+            }
+        }
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    jTextField2.setText("");
-    jTextField1.setText("");
-    jTextField3.setText("");
-    jTextField4.setText("0");
-    jTextField5.setText("0"); // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    System.exit(0);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    Cliente cliente = new Cliente();
-        cliente.setCpf(jTextField2.getText());
-        cliente.setNome(jTextField1.getText());
-        cliente.setData_de_nascimento(jTextField3.getText());
-        cliente.setPeso(Float.parseFloat(jTextField4.getText()));
-        cliente.setAltura(Float.parseFloat(jTextField5.getText()));
-       
-      
-    String cpf = jTextField2.getText();
-    
-    if(cpf.length() != 11){
-        JOptionPane.showMessageDialog(null,"O Cpf deve conter 11 números.");
-        return;
-    }
-    
-    
-    
-        
-    if ((jTextField2.getText().isEmpty() | jTextField1.getText().isEmpty() | jTextField3.getText().isEmpty() | jTextField4.getText().isEmpty() | jTextField5.getText().isEmpty())) {
-        JOptionPane.showMessageDialog(null,"Preencha todos os campos");
-    }
-    else {
-        
-        UsuarioDAO dao = new UsuarioDAO();
-        dao.adiciona(cliente);
-        JOptionPane.showMessageDialog(null,"Cliente " + jTextField1.getText() + " inserido com sucesso! ");
-        model.addRow(new Object[]{cliente.getCpf(),cliente.getNome(),cliente.getData_de_nascimento(),cliente.getPeso(),cliente.getAltura()});
-        
-    
-    
-    }
-    jTextField1.setText("");
-    jTextField2.setText("");
-    jTextField3.setText("");
-    jTextField4.setText("0");
-    jTextField5.setText("0");
-
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    int selectedRow = jTable1.getSelectedRow();
-    
-    if(selectedRow == -1){
-    JOptionPane.showMessageDialog(null,"nenhum aluno selecionado.");
-    return;
-    }
-    
-    String Cpf = (String)jTable1.getValueAt(selectedRow, 0);
-    String Nome = jTextField1.getText();
-    String Data_nascimento = jTextField3.getText();
-    float Peso;
-    float Altura;
-    
-    if(Nome.isEmpty() || Data_nascimento.isEmpty() || jTextField4.getText().isEmpty() || jTextField5.getText().isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Preencha todas as informações.");
-        return;
-    }
-    try {
-        Peso = Float.parseFloat(jTextField4.getText());
-        Altura = Float.parseFloat(jTextField5.getText());
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Peso e altura devem ser números válidos.");
-        return;
-    }
-    
-    Cliente cliente = new Cliente();
-    cliente.setCpf(Cpf);
-    cliente.setNome(Nome);
-    cliente.setData_de_nascimento(Data_nascimento);
-    cliente.setPeso(Peso);
-    cliente.setAltura(Altura);
-    
-    UsuarioDAO dao = new UsuarioDAO();
-    dao.atualizar(cliente);
-    
-    model.setValueAt(cliente.getNome(), selectedRow, 1);
-    model.setValueAt(cliente.getData_de_nascimento(), selectedRow, 2);
-    model.setValueAt(cliente.getPeso(), selectedRow, 3);
-    model.setValueAt(cliente.getAltura(), selectedRow, 4);
-    
-    JOptionPane.showMessageDialog(null, "Aluno Atualizado!");
-            // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int sRow = jTable1.getSelectedRow();
-        
+
         if (sRow ==-1) {
             JOptionPane.showMessageDialog(null,"Nenhum cliente selecionado");
             return;}
-        
+
         String Cpf =(String) jTable1.getValueAt(sRow,0);
         int option = JOptionPane.showConfirmDialog(null,"Tem certeza que deseja excluir este cliente?");
         if(option==JOptionPane.YES_OPTION){
@@ -440,9 +405,120 @@ public class ClienteGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Aluno excluído com sucesso!");
         }
 
-
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+
+        if(selectedRow == -1){
+            JOptionPane.showMessageDialog(null,"nenhum aluno selecionado.");
+            return;
+        }
+
+        String Cpf = (String)jTable1.getValueAt(selectedRow, 0);
+        String Nome = jTextField1.getText();
+        String Data_nascimento = jTextField3.getText();
+        float Peso;
+        float Altura;
+
+        if(Nome.isEmpty() || Data_nascimento.isEmpty() || jTextField4.getText().isEmpty() || jTextField5.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todas as informações.");
+            return;
+        }
+        try {
+            Peso = Float.parseFloat(jTextField4.getText());
+            Altura = Float.parseFloat(jTextField5.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Peso e altura devem ser números válidos.");
+            return;
+        }
+
+        Cliente cliente = new Cliente();
+        cliente.setCpf(Cpf);
+        cliente.setNome(Nome);
+        cliente.setData_de_nascimento(Data_nascimento);
+        cliente.setPeso(Peso);
+        cliente.setAltura(Altura);
+
+        UsuarioDAO dao = new UsuarioDAO();
+        dao.atualizar(cliente);
+
+        model.setValueAt(cliente.getNome(), selectedRow, 1);
+        model.setValueAt(cliente.getData_de_nascimento(), selectedRow, 2);
+        model.setValueAt(cliente.getPeso(), selectedRow, 3);
+        model.setValueAt(cliente.getAltura(), selectedRow, 4);
+
+        JOptionPane.showMessageDialog(null, "Aluno Atualizado!");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Cliente cliente = new Cliente();
+        cliente.setCpf(jTextField2.getText());
+        cliente.setNome(jTextField1.getText());
+        cliente.setData_de_nascimento(jTextField3.getText());
+        cliente.setPeso(Float.parseFloat(jTextField4.getText()));
+        cliente.setAltura(Float.parseFloat(jTextField5.getText()));
+
+        String cpf = jTextField2.getText();
+
+        if(cpf.length() != 11){
+            JOptionPane.showMessageDialog(null,"O Cpf deve conter 11 números.");
+            return;
+        }
+
+        if ((jTextField2.getText().isEmpty() | jTextField1.getText().isEmpty() | jTextField3.getText().isEmpty() | jTextField4.getText().isEmpty() | jTextField5.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null,"Preencha todos os campos");
+        }
+        else {
+
+            UsuarioDAO dao = new UsuarioDAO();
+            dao.adiciona(cliente);
+            JOptionPane.showMessageDialog(null,"Cliente " + jTextField1.getText() + " inserido com sucesso! ");
+            model.addRow(new Object[]{cliente.getCpf(),cliente.getNome(),cliente.getData_de_nascimento(),cliente.getPeso(),cliente.getAltura()});
+
+        }
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("0");
+        jTextField5.setText("0");
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jTextField2.setText("");
+        jTextField1.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("0");
+        jTextField5.setText("0"); // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -485,6 +561,8 @@ public class ClienteGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

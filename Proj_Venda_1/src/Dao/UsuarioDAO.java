@@ -78,28 +78,29 @@ public class UsuarioDAO {
     }
     }
     
-    public List<Cliente> consultar() {
-        List<Cliente> listaClientes = new ArrayList<>();
-        String sql = "select * from cliente";
+    public Cliente consultar(String cpf) {
+    String sql = "SELECT * FROM cliente WHERE cpf = ?";
+    
+    try {
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, cpf);
+        ResultSet rs = stmt.executeQuery();
         
-        try{
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet res = stmt.executeQuery();
-            while (res.next()) {
-                Cliente cliente = new Cliente();
-                cliente.setCpf(res.getString("cpf"));
-                cliente.setNome(res.getString("nome"));
-                cliente.setData_de_nascimento(res.getString("data_de_nascimento"));
-                cliente.setPeso(res.getFloat("peso"));
-                cliente.setAltura(res.getFloat("altura"));
-                listaClientes.add(cliente);
-            }
-            res.close();
-            stmt.close();
+        // Se encontrou um registro, criar um objeto Cliente com os dados
+        if (rs.next()) {
+            Cliente cliente = new Cliente();
+            cliente.setCpf(rs.getString("cpf"));
+            cliente.setNome(rs.getString("nome"));
+            cliente.setData_de_nascimento(rs.getString("data_de_nascimento"));
+            cliente.setPeso(rs.getFloat("peso"));
+            cliente.setAltura(rs.getFloat("altura"));
+            return cliente;
+        } else {
+            // Se não encontrou, retornar null
+            return null;
         }
-        catch (SQLException and){
-            throw new RuntimeException("Erro ao consultar os clientes: " + and.getMessage());
-        }
-        return listaClientes;
+    } catch (SQLException e) {
+        throw new RuntimeException("Erro ao consultar cliente: " + e.getMessage());
     }
+}
 }
